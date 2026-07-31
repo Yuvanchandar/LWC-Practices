@@ -1,0 +1,16 @@
+<template>
+    <div>
+        <p> Hi, This is a component for infinite Scrolling Pratice </p>
+    </div>
+        
+        <div style ="height: 500px;">
+            <lightning-datatable
+                key-field="Id"
+                data={accountList}
+                columns={tableColumns}
+                hide-checkbox-column
+                enable-infinite-loading
+                onloadmore={handleLoadMore}>
+            </lightning-datatable>
+        </div>
+</template>

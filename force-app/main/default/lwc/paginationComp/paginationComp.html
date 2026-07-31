@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title="Paginated Data Table" icon-name="standard:account">
+            <div>
+                <lightning-datatable
+                        key-field="Id"
+                        data={paginatedData}
+                        columns={columns}
+                        hide-checkbox-column>
+                </lightning-datatable>
+            </div>
+            <div class="slds-m-top_medium slds-align_absolute-center">
+                    <lightning-button
+                        variant="brand"
+                        label="Previous"
+                        title="Previous"
+                        class="slds-m-left_x-small"
+                        onclick={previousPage}
+                        disabled={disablePrevious}
+                    ></lightning-button>
+                    <lightning-button
+                        variant="brand"
+                        label="Next"
+                        title="Next"
+                        class="slds-m-left_x-small"
+                        onclick={nextPage}
+                        disabled={disableNext}
+                    ></lightning-button>
+            </div>
+    </lightning-card> 
+</template>
