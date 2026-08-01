@@ -1,0 +1,60 @@
+<template>
+    <lightning-card title = 'QR Code Generator' icon-name='utility:scan'>
+
+        <div class = "slds-var-p-horizontal_medium slds-var-p-bottom_medium">
+            <lightning-input
+            type = "url"
+            label = "Target URL"
+            placeholder="https://example.com"
+            value = {url}
+            onchange={handleUrlChange}
+            class="slds-var-m-bottom_small">
+            </lightning-input>
+
+            <lightning-input
+            data-id = "file-input"
+            type = "file"
+            label = "Logo (optional)"
+            onchange = {handleFileChange}>
+            </lightning-input>
+            <template if:true={logoName}>
+                <div class="logo-preview slds-var-m-bottom_medium">
+                <p>The file selected is:</p>
+                <p> {logoName}</p>
+                <img src={logoUrl} alt = "logo preview" class = "logo-preview-image"></img>
+                <lightning-button-icon
+                icon-name="utility:close"
+                alternative-text="Remove Logo"
+                variant="bare"
+                size="small"
+                onclick = {handleRemoveUrl}
+                class="remove-logo-btn">
+                </lightning-button-icon>
+                </div>    
+            </template>
+        </div>
+
+        <div>
+            <lightning-button
+            variant="brand"
+            label="Generate QR Code"
+            onclick={handleQRGeneration}
+            disable={isNoGenerate}
+            class="slds-var-m-bottom_medium">
+            </lightning-button>
+        </div>
+
+        <template if:true={error}>
+            <div class="slds-box slds-theme_error slds-var-m-top_small">
+                <p>{error}</p>
+            </div>
+        </template>
+
+        <template if:true={hasQRCode}>
+            <div class="qr-code-container slds-var-m-top_medium">
+                <img src={qrCodeUrl} alt="Generated QR Code" class="qr-code-image" />
+            </div>
+        </template>
+
+    </lightning-card>
+</template>
